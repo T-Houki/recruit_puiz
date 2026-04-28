@@ -22,13 +22,13 @@ int main()
 	int x = uniform_int_distribution<>(1, 30)(rand);
 	int y = uniform_int_distribution<>(1, 20)(rand);
 
-	questions[0].q = to_string(x) + "x" + to_string(y);
+	questions[0].q = to_string(x) + "x" + to_string(y) + "の答えは？";
 	questions[0].a = x * y;
 
 	//割り算
 	x = uniform_int_distribution<>(1, 30)(rand);
 	y = uniform_int_distribution<>(1, 20)(rand);
-	questions[1].q = to_string(x * y) + "÷" + to_string(y);
+	questions[1].q = to_string(x * y) + "÷" + to_string(y) + "の答えは？";
 	questions[1].a = x;
 
 	//複雑な式
@@ -36,7 +36,7 @@ int main()
 	y = uniform_int_distribution<>(1, 10)(rand);
 	int z = uniform_int_distribution<>(1, 10)(rand);
 	int w = uniform_int_distribution<>(1, 10)(rand);
-	questions[2].q = to_string(x) + "-(" + to_string(y * w) + "+" + to_string(z * w) + ")÷" + to_string(w);
+	questions[2].q = to_string(x) + "-(" + to_string(y * w) + "+" + to_string(z * w) + ")÷" + to_string(w) + "の答えは？";
 	questions[2].a = x - (y + z);
 
 	//三角形の面積
@@ -48,7 +48,7 @@ int main()
 
 	for (const auto& e : questions)
 	{
-		cout << e.q << "の答えは？\n";
+		cout << e.q << "\n";
 
 		int answer;
 		cin >> answer;
