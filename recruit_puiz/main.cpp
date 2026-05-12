@@ -105,6 +105,8 @@ int main()
 	if (subject == 2)
 	{
 		questions = CreateKanjiExam();
+		const QuestionList idiomQuestions = CreateIdiomExam();
+		questions.insert(questions.end(), idiomQuestions.begin(), idiomQuestions.end());
 	}
 
 	for (const auto& e : questions)

@@ -62,3 +62,46 @@ QuestionList CreateKanjiExam()
 	
 	return questions;
 }
+
+//慣用句の意味をこたえる問題を作成する
+QuestionList CreateIdiomExam()
+{
+	static const struct
+	{
+		const char* idiom;	//慣用句
+		const char* meaning;//意味
+	} data[] = {
+		{ "頭が上がらない", "相手に対して、立場が弱く、敬意を払うしかないこと" },
+		{ "足が地につかない", "不安で落ち着かない様子" },
+		{ "口が滑る", "うっかり秘密を漏らすこと" },
+		{ "手が空く", "することがなくなること" },
+		{ "目が高い", "物の価値を見抜く力があること" },
+	};
+
+	constexpr int quizCount = 5;
+	QuestionList questions;
+	questions.reserve(quizCount);
+	const vector<int> indices = CreateRandomIndices(size(data));
+	random_device rd;
+
+	for (int i = 0; i < quizCount; i++)
+	{
+		//間違った番号をランダムに選ぶ
+		const int correctIndex = indices[i];
+		vector<int> answers = CreateWrongIndices(size(data), correctIndex);
+
+		//ランダムな位置を正しい番号で上書き
+		const int correctNo = uniform_int_distribution<>(1, 3)(rd);
+		answers[correctNo - 1] = correctIndex;
+
+		//問題を作成する
+		string s = "「" + string(data[correctIndex].idiom) + "」の意味として正しい番号を選べ\n";
+		for (int j = 0; j < 3; j++)
+		{
+			s += "\n" + to_string(j + 1) + "：" + data[answers[j]].meaning;
+		}
+
+		questions.push_back({ s, to_string(correctNo)});
+	}
+	return questions;
+}
