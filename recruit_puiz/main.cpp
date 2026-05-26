@@ -107,6 +107,8 @@ int main()
 		questions = CreateKanjiExam();
 		const QuestionList idiomQuestions = CreateIdiomExam();
 		questions.insert(questions.end(), idiomQuestions.begin(), idiomQuestions.end());
+		QuestionList homophoneExam = CreateHomophoneExam();
+		questions.insert(questions.end(), homophoneExam.begin(), homophoneExam.end());
 	}
 
 	for (const auto& e : questions)
