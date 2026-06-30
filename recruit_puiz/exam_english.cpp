@@ -135,7 +135,7 @@ QuestionList CreateEnglishPhraseExam()
 
 		{ "be going to [A]", "[A] ‚·‚é‚Â‚à‚è‚¾",
 		  "I am going to build a house.", "‰Æ‚ğŒš‚Ä‚é‚Â‚à‚è‚¾B",
-		  3, { 1, 2, 3 }},
+		  2, { 2, 3 }},
 		{ "turn to [A] for [B]", "[A]‚É[B]‚ğ‹‚ß‚é",
 		  "She turn to the friends for help.", "”Ş—‚Í—F’B‚É•‚¯‚ğ‹‚ß‚½B",
 		  3, { 1, 2, 5 }},
