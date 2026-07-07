@@ -195,6 +195,29 @@ QuestionList CreatePhysicsExam()
 			"このばねの「ばね定数」を小数点以下第2位を四捨五入して求めよ。",
 			answer });
 
+
+		int k1 = uniform_int_distribution<>(1, 10)(rd); // ばね定数1(N/m)
+		int k2 = uniform_int_distribution<>(1, 9)(rd);  // ばね定数2(N/m)
+		if (k2 >= k1)
+		{
+			k2++;
+		}
+		m = uniform_int_distribution<>(1, 10)(rd) * 10; // 質量(g)
+		x = 100 * m * (k1 + k2) / (k1 * k2) + 5;
+		answer = to_string(x / 100); // 整数部を文字列化
+		x /= 10; // 小数点以下第2位にあたる部分を捨てる
+		if (x % 10)	// 小数点以下第1位が0以外なら、小数部を文字列に加える
+		{
+			answer += '.';
+			answer += '0' + x % 10;
+		}
+		questions.push_back({
+			"重力加速度を10m/s^2とする。\nばね定数が" + to_string(k1) + "と" + to_string(k2) + 
+			"の2つのばねを直列につなぎ、" + to_string(m) + "gの重りを付けて、天井から吊り下げた。\n" +
+			"すると、ばねの長さが合わせてXcm伸びて静止した。\n" +
+			"Xの値をを小数点以下第2位を四捨五入して求めよ。",
+			answer });
+
 	} // ばね
 	
 	return questions;
