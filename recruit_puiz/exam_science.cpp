@@ -239,6 +239,33 @@ QuestionList CreatePhysicsExam()
 			answer });
 
 	} // ばね
+
+	{ // 振り子
+
+		int l = uniform_int_distribution<>(1, 10)(rd); // 長さ(m)の平方根
+		int m = uniform_int_distribution<>(1, 10)(rd); // 質量(g)
+
+		questions.push_back({
+			"長さ" + to_string(l * l) + "mの糸に質量" + to_string(m) +
+			"kgの重りを付け、わずかに揺らしたところ、周期はX秒であった。Xの値を求めよ。\n" +
+			"なお、重力加速度gと円周率πについて、π = vgが成り立つものとする。" +
+			to_string(2 * l)});
+
+
+		l = uniform_int_distribution<>(1, 10)(rd); // 長さ(m)の平方根
+		m = uniform_int_distribution<>(1, 10)(rd); // 質量(g)
+
+		int max_v = (int)sqrt(20 * l); // 速度の上限(2gh = v^2を根拠とする)
+		int v = uniform_int_distribution<>(1, max_v)(rd); // 速度(m/s)
+
+		questions.push_back({
+			"重力加速度を10m/s^2とする。\n長さ" + to_string(l) + "mの糸に質量" + to_string(m) +
+			"kgの重りを付けた振り子がある。\nこの重りを最下点から高さ" +
+			to_string(v * v * 100 / 20) + "cmの位置で静かに放した。\n" +
+			"このとき、おもりが最下点を通過するときの速度をm/s単位で求めよ。" +
+			to_string(v) });
+
+	} // 振り子
 	
 	return questions;
 }
